@@ -11,7 +11,7 @@ import { ChartProps } from "./chart.types";
 type LayoutProps = 
     | { library: "mui-x"; type: "bars" | "lines" | "pie" | "radar" }
     | { library: "recharts"; type: "bars" | "lines" | "pie" | "area" }
-    | { library: "chartjs"; type: "bars" | "pie" };
+    | { library: "chartjs"; type: "bars" | "area" | "pie" | "lines" };
 
 export default function Chart({ library, type }: LayoutProps) {
 
@@ -51,7 +51,7 @@ export default function Chart({ library, type }: LayoutProps) {
                     </Typography>
 
                     <SyntaxHighlighter language="jsx" style={vscDarkPlus} customStyle={{ flex: 1, marginBottom: '16px', maxHeight: '500px', overflowY: 'auto' }}>
-                        {rawData ? JSON.stringify(rawData.data || rawData, null, 2) : "Press generate data..."}
+                        {rawData ? JSON.stringify(rawData.data || rawData || rawData.datasets, null, 2) : "Press generate data..."}
                     </SyntaxHighlighter>
 
                     <Button variant="contained" onClick={handleGenerate}>Generate data</Button>

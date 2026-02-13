@@ -15,7 +15,7 @@ export default function Nav() {
                 if (typeof item === "string") {
                     return (
                         <Divider key={index} textAlign="left" sx={{ my: 2, '&::before, &::after': { borderColor: 'divider' } }}>
-                            <Typography variant="caption" sx={{ color: 'text.secondary', fontWeight: 'bold', textTransform: 'uppercase' }}>
+                            <Typography variant="caption" sx={{ color: 'text.secondary', fontWeight: 'bold', textTransform: 'uppercase', opacity: 0.6 }}>
                                 { item }
                             </Typography>
                         </Divider>

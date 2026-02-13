@@ -4,6 +4,7 @@ export const NAV_LIST: (string | { name: string; href: string })[] = [
     "Charts",
     { name: "MUI-X", href: "/charts/mui-x" },
     { name: "Recharts", href: "/charts/recharts" },
+    { name: "Chart.js", href: "/charts/chartjs" },
     "Widgets",
     
 ]
