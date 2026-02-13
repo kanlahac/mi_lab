@@ -8,10 +8,10 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { ChartProps } from "./chart.types";
 
 
-interface LayoutProps {
-    library: "mui-x" | "recharts" | "chartjs";
-    type: "bars" | "lines" | "pie" | "radar";
-}
+type LayoutProps = 
+    | { library: "mui-x"; type: "bars" | "lines" | "pie" | "radar" }
+    | { library: "recharts"; type: "bars" | "lines" | "pie" | "area" }
+    | { library: "chartjs"; type: "bars" | "pie" };
 
 export default function Chart({ library, type }: LayoutProps) {
 
@@ -58,7 +58,9 @@ export default function Chart({ library, type }: LayoutProps) {
                 </Paper>
 
                 <Box sx={{ flex: 4, p: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <ChartComponent rawData={rawData} />
+                    {rawData && (
+                        <ChartComponent rawData={rawData} />
+                    )}
                 </Box>
 
             </Box>

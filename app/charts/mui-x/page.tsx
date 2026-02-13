@@ -7,7 +7,7 @@ export default function Muix() {
     return (
         <div>
             <Typography textAlign={"center"} variant="h3" padding={4}>
-                Raw data generator
+                Material UI-X
             </Typography>
 
             <Chart library="mui-x" type="bars" />
