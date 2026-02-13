@@ -11,7 +11,8 @@ import { ChartProps } from "./chart.types";
 type LayoutProps = 
     | { library: "mui-x"; type: "bars" | "lines" | "pie" | "radar" }
     | { library: "recharts"; type: "bars" | "lines" | "pie" | "area" }
-    | { library: "chartjs"; type: "bars" | "area" | "pie" | "lines" };
+    | { library: "chartjs"; type: "bars" | "area" | "pie" | "lines" }
+    | { library: "echarts"; type: "bars" | "area" | "pie" | "lines" };
 
 export default function Chart({ library, type }: LayoutProps) {
 
