@@ -2,7 +2,6 @@
 
 import ReactECharts from 'echarts-for-react';
 import { ChartProps } from "../../chart.types";
-import { color } from 'chart.js/helpers';
 
 export default function Pie({ rawData }: ChartProps) {
 
@@ -11,50 +10,6 @@ export default function Pie({ rawData }: ChartProps) {
             `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`
         );
     };
-
-    // const option = {
-    //     color: generateColors(rawData.length),
-    //     tooltip: {
-    //         trigger: 'item',
-    //         formatter: '{a} <br/>{b}: {c} ({d}%)'
-    //     },
-    //     legend: {
-    //         orient: 'vertical',
-    //         left: 'left',
-    //         data: rawData.map((d: any) => d.name)
-    //     },
-    //     series: [
-    //         {
-    //             name: 'Distribución',
-    //             type: 'pie',
-    //             radius: ['100%', '50%'],
-    //             avoidLabelOverlap: false,
-    //             label: {
-    //                 show: false,
-    //                 position: 'center'
-    //             },
-    //             itemStyle: {
-    //                 borderRadius: 10,    
-    //             },
-    //             emphasis: {
-    //                 label: {
-    //                     show: true,
-    //                     fontSize: 20,
-    //                     fontWeight: 'bold'
-    //                 },
-    //                 itemStyle: {
-    //                     shadowBlur: 10,
-    //                     shadowOffsetX: 0,
-    //                     shadowColor: 'rgba(163, 161, 161, 0.5)'
-    //                 }
-    //             },
-    //             labelLine: {
-    //                 show: false
-    //             },
-    //             data: rawData
-    //         }
-    //     ]
-    // };
 
     const option = {
         color: generateColors(rawData.length),
@@ -68,7 +23,7 @@ export default function Pie({ rawData }: ChartProps) {
             right: '25%',
             data: rawData.map((d: any) => d.name),
             itemGap: 20,
-            icon: 'circle', // 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'
+            icon: 'circle',
             itemWidth: 22,
             itemHeight: 22,
             textStyle: {
@@ -96,7 +51,7 @@ export default function Pie({ rawData }: ChartProps) {
                 },
             }
         ]
-        };
+    };
 
 
     return (

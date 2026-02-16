@@ -9,12 +9,12 @@ import { ChartProps } from "./chart.types";
 
 
 type LayoutProps = 
-    | { library: "mui-x"; type: "bars" | "lines" | "pie" | "radar" }
-    | { library: "recharts"; type: "bars" | "lines" | "pie" | "area" }
-    | { library: "chartjs"; type: "bars" | "area" | "pie" | "lines" }
-    | { library: "echarts"; type: "bars" | "area" | "pie" | "lines" };
+    | { library: "mui-x"; type: "bars" | "lines" | "pie" | "radar"; raw?: boolean }
+    | { library: "recharts"; type: "bars" | "lines" | "pie" | "area"; raw?: boolean }
+    | { library: "chartjs"; type: "bars" | "area" | "pie" | "lines"; raw?: boolean }
+    | { library: "echarts"; type: "bars" | "area" | "pie" | "lines"; raw?: boolean };
 
-export default function Chart({ library, type }: LayoutProps) {
+export default function Chart({ library, type, raw = true }: LayoutProps) {
 
     const chartImport = `@/components/charts/${library}/${type}/${type}.tsx`;
     const rawGeneratorImport = `@/components/charts/${library}/${type}/rawGenerator.ts`;
@@ -46,26 +46,30 @@ export default function Chart({ library, type }: LayoutProps) {
 
             <Box sx={{ display: 'flex', gap: 2, p: 3 }}>
 
-                <Paper sx={{ flex: 1, display: 'flex', flexDirection: 'column', p: 3 }}>
-                    <Typography variant="h5">
-                        Raw data
-                    </Typography>
+                {
+                    raw === true &&
+                        <Paper sx={{ flex: 1, display: 'flex', flexDirection: 'column', p: 3 }}>
+                            <Typography variant="h5">
+                                Raw data
+                            </Typography>
 
-                    <SyntaxHighlighter language="jsx" style={vscDarkPlus} customStyle={{ flex: 1, marginBottom: '16px', maxHeight: '500px', overflowY: 'auto' }}>
-                        {rawData ? JSON.stringify(rawData.data || rawData || rawData.datasets, null, 2) : "Press generate data..."}
-                    </SyntaxHighlighter>
+                            <SyntaxHighlighter language="jsx" style={vscDarkPlus} customStyle={{ flex: 1, marginBottom: '16px', maxHeight: '500px', overflowY: 'auto' }}>
+                                {rawData ? JSON.stringify(rawData.data || rawData || rawData.datasets, null, 2) : "Press generate data..."}
+                            </SyntaxHighlighter>
 
-                    <Button variant="contained" onClick={handleGenerate}>Generate data</Button>
-                </Paper>
+                            <Button variant="contained" onClick={handleGenerate}>Generate data</Button>
+                        </Paper>
+                }
 
                 <Box sx={{ flex: 4, p: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    {rawData && (
-                        <ChartComponent rawData={rawData} />
-                    )}
+                    {
+                        rawData && (
+                            <ChartComponent rawData={rawData} />
+                        )
+                    }
                 </Box>
 
             </Box>
         </>
-        
     );
 }

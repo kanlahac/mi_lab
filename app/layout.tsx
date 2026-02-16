@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
     subsets: ["latin"],
 });
     
-const darkTheme = createTheme({
+const customTheme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
   },
 });
 
@@ -35,7 +35,7 @@ export default function RootLayout({
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
                 <AppRouterCacheProvider>
-                    <ThemeProvider theme={darkTheme}>
+                    <ThemeProvider theme={customTheme}>
                         <CssBaseline />
                         
                         <Box sx={{ display: "flex" }}>
