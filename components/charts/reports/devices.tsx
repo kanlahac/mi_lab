@@ -4,6 +4,8 @@ import ReactECharts from 'echarts-for-react';
 import { generateReportRawData } from '../echarts/bars/rawGenerator';
 import { Box, Paper } from '@mui/material';
 import dayjs from 'dayjs';
+import Image from 'next/image';
+import chartImg from '@/public/images/charts/chart-bar-mi.png';
 
 export default function Bars() {
     const rawData = generateReportRawData();
@@ -91,7 +93,7 @@ export default function Bars() {
             splitLine: {    // modificar el grid
                 show: true,
                 lineStyle: {
-                    type: [5, 10], // se puede cambiar a 'dashed'
+                    type: [5, 10], // se pu/images/charts/chart-bar-mi.png"ede cambiar a 'dashed'
                     width: 1,       
                     dashOffset: 0 
                 }
@@ -128,15 +130,12 @@ export default function Bars() {
                         alt="" 
                         className="w-full"
                     /> */}
-                    <Box
-                        component="img"
-                        src="/images/charts/chart-bar-mi.png"
-                        alt="Chart Preview"
-                        sx={{
-                            width: '100%',
-                            height: 'auto',
-                            display: 'block'
-                        }}
+                    <Image 
+                        src={chartImg} 
+                        alt="Chart"
+                        width={827}
+                        height={258}
+                        unoptimized
                     />
                 </Paper>
 
