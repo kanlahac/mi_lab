@@ -123,10 +123,20 @@ export default function Bars() {
         <>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                 <Paper sx={{ flexGrow: 1, marginBottom: 20 }}>
-                    <img 
+                    {/* <img 
                         src="/images/charts/chart-bar-mi.png" 
                         alt="" 
                         className="w-full"
+                    /> */}
+                    <Box
+                        component="img"
+                        src="/images/charts/chart-bar-mi.png"
+                        alt="Chart Preview"
+                        sx={{
+                            width: '100%',
+                            height: 'auto',
+                            display: 'block'
+                        }}
                     />
                 </Paper>
 
