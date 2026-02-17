@@ -6,6 +6,7 @@ import { Box, Paper } from '@mui/material';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import chartImg from '@/public/images/charts/chart-bar-mi.png';
+import { useEffect, useRef } from 'react';
 
 export default function Bars() {
     const rawData = generateReportRawData();
@@ -64,6 +65,7 @@ export default function Bars() {
             icon: 'circle',
             itemWidth: 10,
             itemHeight: 10,
+            itemGap: 20,
             textStyle: {
                 fontWeight: 'bold',
                 backgroundColor: '#f9fafb',
@@ -93,14 +95,14 @@ export default function Bars() {
             splitLine: {    // modificar el grid
                 show: true,
                 lineStyle: {
-                    type: [5, 10], // se pu/images/charts/chart-bar-mi.png"ede cambiar a 'dashed'
+                    type: [5, 10], // se puede cambiar a 'dashed'
                     width: 1,       
                     dashOffset: 0 
                 }
             }
         },
         dataZoom: [
-            { type: 'slider', start: 0, end: 100 },
+            // { type: 'slider', start: 0, end: 100 },
             { type: 'inside' }
         ],
         toolbox: {
@@ -121,15 +123,40 @@ export default function Bars() {
         }))
     };
 
+    const chartRef = useRef<ReactECharts>(null);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (chartRef.current) {
+                const chartInstance = chartRef.current.getEchartsInstance();
+                chartInstance.resize();
+            }
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+
+    // useEffect(() => {
+    //     if (!chartRef.current) return;
+    
+    //     const chartInstance = chartRef.current.getEchartsInstance();
+    //     const resizeObserver = new ResizeObserver(() => {
+    //         chartInstance.resize();
+    //     });
+    
+    //     // Observa el contenedor del gráfico
+    //     const container = chartRef.current.ele;
+    //     resizeObserver.observe(container);
+    
+    //     return () => resizeObserver.disconnect();
+    // }, []);
+    
+
     return (
         <>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                 <Paper sx={{ flexGrow: 1, marginBottom: 20 }}>
-                    {/* <img 
-                        src="/images/charts/chart-bar-mi.png" 
-                        alt="" 
-                        className="w-full"
-                    /> */}
                     <Image 
                         src={chartImg} 
                         alt="Chart"
@@ -140,8 +167,9 @@ export default function Bars() {
                 </Paper>
 
                 <ReactECharts 
+                    ref={chartRef}
                     option={option} 
-                    style={{ height: '500px', width: '100%' }}
+                    style={{ width: '100%' }}
                     notMerge={true} 
                     lazyUpdate={true}
                 />
