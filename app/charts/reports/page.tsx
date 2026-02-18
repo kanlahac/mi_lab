@@ -1,6 +1,6 @@
 "use client";
 
-import { Divider, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import Devices from "@/components/charts/reports/devices";
 import PieChart from "@/components/charts/reports/pieChart/pieChart";
 
@@ -28,16 +28,19 @@ const  values = [
 
 export default function Reports() {
     return (
-        <div>
-            <Typography textAlign={"center"} variant="h3" padding={4}>
+        <div style={{ height: '90vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            {/* <Typography textAlign={"center"} variant="h3" padding={4}>
                 Testing Reports
             </Typography>
 
             <Divider sx={{ marginTop: 10, marginBottom: 10 }}>BARS</ Divider>
             <Devices />
 
-            <Divider sx={{ marginTop: 10, marginBottom: 10 }}>PIE</ Divider>
-            <PieChart values={values} />
+            <Divider sx={{ marginTop: 10, marginBottom: 10 }}>PIE</ Divider> */}
+            <Box sx={{ width: 600 }}>
+                <PieChart values={values} />
+            </Box>
+            
         </div>
     );
 }

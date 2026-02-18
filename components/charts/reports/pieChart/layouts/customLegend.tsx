@@ -1,12 +1,11 @@
 import { Stack, Box, Grid, Typography, alpha } from "@mui/material";
 import { CustomLegendProps } from "../types";
 
-export default function CustomLegend({ data, onLegendClick }: CustomLegendProps) {
+export default function CustomLegend({ data, isNarrow, onLegendClick }: CustomLegendProps) {
 
     return (
-
         <Stack 
-            gap={2} 
+            gap={1} 
             direction="column" 
             justifyContent="center"
             display={"flex"}
@@ -16,7 +15,7 @@ export default function CustomLegend({ data, onLegendClick }: CustomLegendProps)
                     <Grid 
                         key={index} 
                         container 
-                        spacing={0.5} 
+                        spacing={0} 
                         alignItems="center" 
                         justifyContent="center" 
                         onClick={() => onLegendClick(item.title)}
@@ -26,7 +25,7 @@ export default function CustomLegend({ data, onLegendClick }: CustomLegendProps)
                             transition: 'border-color 0.3s, background-color 0.3s',
                             padding: 2,
                             '&:hover': {
-                                backgroundColor: alpha(item.pallet_color, 0.05),
+                                backgroundColor: alpha(item.pallet_color, 0.05), // theme.vars.palette.chips.info.contained.backgroundHover
                                 boxSizing: 'border-box',
                                 borderColor: alpha(item.pallet_color, 0.2),
                                 borderRadius: 2,
@@ -40,14 +39,15 @@ export default function CustomLegend({ data, onLegendClick }: CustomLegendProps)
                                     width: 11,
                                     height: 11,
                                     borderRadius: '50%',
-                                    backgroundColor: item.pallet_color,
+                                    backgroundColor: item.pallet_color, // theme.vars.palette.chips.info.contained.backgroundColortone
                                 }}
                             />
                         </Grid>
 
                         <Grid size={{ xs: 10}} >
                             <Grid 
-                                container spacing={0.5} 
+                                container 
+                                spacing={0} 
                                 alignItems="center" 
                                 justifyContent="center"
                                 sx={{ height: '100%' }}
@@ -55,6 +55,7 @@ export default function CustomLegend({ data, onLegendClick }: CustomLegendProps)
                             
                                 <Grid size={{ xs: 8 }}>
                                     <Box >
+                                        {/* theme.vars.palette.text.primary */}
                                         <Typography sx={{ fontWeight: '700', fontSize: 15 }}>
                                             {item.title.split(':')[1]}
                                         </Typography>
@@ -63,10 +64,10 @@ export default function CustomLegend({ data, onLegendClick }: CustomLegendProps)
                                     
                                 <Grid size={{ xs: 4 }}>
                                     <Box sx={{ 
-                                        backgroundColor: alpha(item.pallet_color, 0.12), 
+                                        backgroundColor: alpha(item.pallet_color, 0.12),  // theme.vars.palette.chips.info.contained.backgroundColor
                                         borderRadius: 2,
                                         padding: 0.25,
-                                        color: item.pallet_color,
+                                        color: item.pallet_color, // theme.vars.palette.chips.info.contained.color
                                         textAlign: 'center',
                                         fontWeight: 'bold',
                                     }}>
@@ -78,7 +79,8 @@ export default function CustomLegend({ data, onLegendClick }: CustomLegendProps)
 
                                 <Grid size={{ xs: 12 }}>
                                     <Box>
-                                        <Typography>
+                                        {/* theme.vars.palette.text.secondary */}
+                                        <Typography sx={{ fontWeight: '500', fontSize: 11 }}> 
                                             {item.title.split(':')[0]}
                                         </Typography>
                                     </Box>
@@ -91,6 +93,5 @@ export default function CustomLegend({ data, onLegendClick }: CustomLegendProps)
                 ))
             }
         </Stack>
-        
     );
 }

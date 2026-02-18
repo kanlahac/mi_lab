@@ -22,35 +22,29 @@ export const generateOptions = (data: PieChartData[]) => {
             borderRadius: 8,
         },
 
-        legend: { show: false },
-    
-        // legend: {
-        //     data: data.map((item: PieChartData) => item.name),
-        //     top: 50,
-        //     right: '15%',
-        //     orient: 'vertical',
-        //     icon: 'circle',
-        //     itemWidth: 10,
-        //     itemHeight: 10,
-        //     itemGap: 20,
-        //     textStyle: {
-        //         fontWeight: 'bold',
-        //         backgroundColor: '#f9fafb',
-        //         padding: [5, 15, 1, 15],
-        //         borderRadius: 5,
-        //         borderColor: '#eaeef3',
-        //         borderWidth: 0.5,
-        //         height: 20,
-        //         lineHeight: 20,
-        //         itemDistance: -18,
-        //     }
-        // },
+        legend: { 
+            show: false 
+        },
     
         series: [
             {
                 type: 'pie',
-                radius: ['50%', '70%'],
+                radius: ['60%', '90%'],
+                center: ['50%', '50%'],
+                padAngle: 4,
                 data: data,
+                label: {
+                    show: false,
+                },
+        
+                labelLine: {
+                    show: false 
+                },
+                itemStyle: {
+                    borderRadius: 10,                  
+                    shadowBlur: 5,            
+                    shadowColor: 'rgba(0,0,0,0.3)'
+                },
             }
         ]
     }

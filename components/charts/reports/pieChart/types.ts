@@ -22,5 +22,11 @@ export interface PieChartData {
 
 export interface CustomLegendProps {
     data: any[];
+    isNarrow: boolean;
     onLegendClick: (name: string) => void;
+}
+
+export interface ParentSize {
+    width: number;
+    height: number;
 }
